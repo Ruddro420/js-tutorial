@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even or Odd Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Even or Odd Calculator</h2>
+                <form id="evenOddForm">
+                    <div class="form-group">
+                        <label for="numberInput">Enter a Number:</label>
+                        <input type="number" class="form-control" id="numberInput" placeholder="Enter a number" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Check</button>
+                </form>
+                <div class="alert mt-3" id="result" role="alert" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for Even or Odd Calculation -->
+    <script>
+        // Function to check if the number is even or odd
+        function checkEvenOdd(number) {
+            return number % 2 === 0 ? "Even" : "Odd";
+        }
+
+        // Event listener for form submission
+        document.getElementById('evenOddForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get the number input from the user
+            const numberInput = document.getElementById('numberInput').value;
+
+            // Check if the input is a valid number
+            if (numberInput === '') {
+                alert('Please enter a valid number');
+                return;
+            }
+
+            // Call the checkEvenOdd function and display the result
+            const result = checkEvenOdd(parseInt(numberInput));
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = result === 'Even' ? 'alert alert-success' : 'alert alert-danger';
+            resultDiv.innerText = `The number ${numberInput} is ${result}.`;
+        });
+    </script>
+
+</body>
+</html>
